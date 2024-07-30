@@ -7,7 +7,7 @@ Question: What are the most in-demand skills for data analysis?
 providing insights into the most valuable skills for job seekers.
 */
 
--- Top 5 In-demand skills for Business Analyst in Singapore
+-- Top 5 In-demand skills for Data Analyst in Singapore
 SELECT 
     skills,
     COUNT(skills_job_dim.job_id) AS demand_count
@@ -15,7 +15,7 @@ FROM job_postings_fact
 INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
 INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
 WHERE 
-    job_title_short = 'Business Analyst' AND
+    job_title_short = 'Data Analyst' AND
     -- job_work_from_home = True -- for remote jobs/work from home
     job_location = 'Singapore'
 GROUP BY 
@@ -23,28 +23,3 @@ GROUP BY
 ORDER BY demand_count DESC
 LIMIT 5;
 
-/*
-Results:
-[
-  {
-    "skills": "excel",
-    "demand_count": "817"
-  },
-  {
-    "skills": "sql",
-    "demand_count": "795"
-  },
-  {
-    "skills": "tableau",
-    "demand_count": "510"
-  },
-  {
-    "skills": "python",
-    "demand_count": "498"
-  },
-  {
-    "skills": "power bi",
-    "demand_count": "359"
-  }
-]
-*/

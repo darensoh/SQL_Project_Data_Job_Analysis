@@ -15,7 +15,7 @@ WITH skills_demand AS (
     INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
     INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
     WHERE 
-        job_title_short = 'Data Analyst' AND -- using data analyst due to insufficient data for business analyst
+        job_title_short = 'Data Analyst' AND
         -- job_work_from_home = True -- for remote jobs/work from home
         job_location = 'Singapore' AND 
         salary_year_avg IS NOT NULL
@@ -65,6 +65,6 @@ WHERE
     salary_year_avg IS NOT NULL
 GROUP BY skills_dim.skill_id
 ORDER BY 
-    demand_count DESC,
-    avg_salary DESC
+    avg_salary DESC,
+    demand_count DESC
 LIMIT 25;
